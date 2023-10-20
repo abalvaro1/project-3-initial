@@ -1,28 +1,31 @@
 package com.example.iterable;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Bag <T> {
-    private T t;
+public class Bag <T> implements Container{
 
-    public Bag(T t) {
+    ArrayList <T> items = new <T> ArrayList();
 
-        this.t = t;
+    public boolean isEmpty() {
+        boolean empty = true;
+        if(items.size() == 0 || items.size() > 0) { empty = false; }
+        return empty;
     }
 
-    public T getT() {
-        return this.t;
+    public int size() {
+        return items.size();
     }
 
-    public void set(T t) {
-        this.t = t;}
-    public T get() {
-        return t;
+    public void add(Object item) {
+        T x = (T) item;
+        items.add(x);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Bag{");
-        sb.append("value=").append(t);
-        sb.append('}');
-        return sb.toString();
+    public Iterator iterator() {
+        if(this.isEmpty()) { return null; }
+        Iterator<T> head = items.iterator();
+        return head;
+    }
+
 }
 
